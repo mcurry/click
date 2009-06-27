@@ -30,5 +30,17 @@ class ClickController extends ClickAppController {
 
 		$this->redirect($url);
 	}
+	
+	function latest() {
+		$this->paginate = array('limit' => 10);
+		return $this->paginate();
+	}
+	
+	function most() {
+		return $this->Click->find('all', array('fields' => array('url', 'count(*) as cnt'),
+																						'group' => 'url',
+																						'limit' => 10,
+																						'order' => 'cnt DESC'));
+	}
 }
 ?>
