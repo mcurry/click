@@ -1,7 +1,7 @@
 <?php
 class ClickController extends ClickAppController {
 	var $name = 'Click';
-	var $uses = false;
+	var $components = array('RequestHandler');
 
 	var $bots = array('trendiction.com',
 										'aiderss.com',
@@ -36,11 +36,18 @@ class ClickController extends ClickAppController {
 		return $this->paginate();
 	}
 	
-	function most() {
-		return $this->Click->find('all', array('fields' => array('url', 'count(*) as cnt'),
+	function most($span='1') {
+		$data = $this->Click->find('all', array('fields' => array('url', 'count(*) as cnt'),
 																						'group' => 'url',
+																						'conditions' => array('created >=' => date('Y-m-d H:i:s', strtotime('-' . $span . ' days'))),
 																						'limit' => 10,
 																						'order' => 'cnt DESC'));
+		
+		if($this->RequestHandler->isAjax()) {
+			$this->set('data', $data);
+		} else {
+			return $data;
+		}
 	}
 }
 ?>

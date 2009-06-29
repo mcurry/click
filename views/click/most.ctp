@@ -1,0 +1,1 @@
+<?php echo $this->element('most_table', array('plugin' => 'click', 'data' => $data)) ?>
