@@ -1,4 +1,16 @@
 <?php
+/*
+ * Click Tracking CakePHP Plugin
+ * Copyright (c) 2009 Matt Curry
+ * www.PseudoCoder.com
+ * http://github.com/mcurry/click
+ *
+ * @author      Matt Curry <matt@pseudocoder.com>
+ * @license     MIT
+ *
+ */
+?>
+<?php
 	$data = $this->requestAction(array('controller' => 'click', 'action' => 'most', 'plugin' => 'click'));
 ?>
 <?php echo $form->create('Click', array('id' => 'ClickMostForm')); ?>
