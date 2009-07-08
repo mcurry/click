@@ -15,6 +15,6 @@
 			var $helpers = array('Click.click');
 	3. Create your links using the helper (same syntax and options as $html->link()):
 			echo $click->link('PseudoCoder', 'http://pseudocoder.com');
-	4. To view the click information download the status plugin (http://github.com/mcurry/click).  Once you have it setup add the click panels:
+	4. To view the click information download the status plugin (http://github.com/mcurry/status).  Once you have it setup add the click panels:
 			Configure::write('Status.panels', array('Click.latest', 'Click.most'));
 			Go to http://yourapp/status
