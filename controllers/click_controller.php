@@ -23,10 +23,10 @@ class ClickController extends ClickAppController {
 										'VSynCrawler');
 
 	function go() {
-		if(empty($this->params['url']['u'])) {
+		if (empty($this->params['url']['u'])) {
 			$this->redirect($this->referer());
 		}
-		
+
 		$url = $this->params['url']['u'];
 
 		if (preg_match('/(' . implode ('|', $this->bots) . ')/is', $_SERVER['HTTP_USER_AGENT'])) {
@@ -41,20 +41,20 @@ class ClickController extends ClickAppController {
 
 		$this->redirect($url);
 	}
-	
+
 	function latest() {
 		$this->paginate = array('limit' => 10);
 		return $this->paginate();
 	}
-	
+
 	function most($span='1') {
 		$data = $this->Click->find('all', array('fields' => array('url', 'count(*) as cnt'),
 																						'group' => 'url',
 																						'conditions' => array('created >=' => date('Y-m-d H:i:s', strtotime('-' . $span . ' days'))),
 																						'limit' => 10,
 																						'order' => 'cnt DESC'));
-		
-		if($this->RequestHandler->isAjax()) {
+
+		if ($this->RequestHandler->isAjax()) {
 			$this->set('data', $data);
 		} else {
 			return $data;
